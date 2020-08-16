@@ -10,11 +10,14 @@ from semstr.cfgutil import Singleton, add_verbose_arg, add_boolean_option, get_g
 from semstr.convert import UCCA_EXT, CONVERTERS
 from ucca import constructions
 
-from tupa.classifiers.nn.constants import *
-from tupa.model_util import load_enum
+#from tupa.classifiers.nn.constants import *
+#from tupa.model_util import load_enum
+from classifiers.nn.constants import *
+from model_util import load_enum
 
 # Classifiers
 
+RANDOM_FOREST = "random_forest"
 SPARSE = "sparse"
 MLP = "mlp"
 BIRNN = "bilstm"
@@ -22,7 +25,7 @@ HIGHWAY_RNN = "highway"
 HIERARCHICAL_RNN = "hbirnn"
 NOOP = "noop"
 NN_CLASSIFIERS = (MLP, BIRNN, HIGHWAY_RNN, HIERARCHICAL_RNN)
-CLASSIFIERS = (SPARSE, MLP, BIRNN, HIGHWAY_RNN, HIERARCHICAL_RNN, NOOP)
+CLASSIFIERS = (SPARSE, MLP, BIRNN, HIGHWAY_RNN, HIERARCHICAL_RNN, NOOP, RANDOM_FOREST)
 
 FEATURE_PROPERTIES = "wmtudhencpqxyAPCIEMNT#^$"
 
@@ -542,6 +545,7 @@ class Config(object, metaclass=Singleton):
                 and (args.swap == COMPOUND or k != "max_swap")
                 and (not args.require_connected or k != "orphan_label")
                 and (args.classifier == SPARSE or k not in SPARSE_ARG_NAMES)
+                and (args.classifier == RANDOM_FOREST or k not in SPARSE_ARG_NAMES)
                 and (args.classifier in NN_CLASSIFIERS or k not in NN_ARG_NAMES | DYNET_ARG_NAMES)
                 and k != "passages"]
 

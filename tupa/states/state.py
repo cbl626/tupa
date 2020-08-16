@@ -9,9 +9,10 @@ from ucca.layer1 import EdgeTags
 
 from .edge import Edge
 from .node import Node
-from ..action import Actions
-from ..config import Config
-
+#from ..action import Actions
+#from ..config import Config
+from action import Actions
+from config import Config
 
 class InvalidActionError(AssertionError):
     def __init__(self, *args, is_type=False):

@@ -1,6 +1,7 @@
 from collections import OrderedDict
 
-from ..model_util import load_json, save_json
+#from ..model_util import load_json, save_json
+from model_util import load_json, save_json
 
 
 class Classifier:

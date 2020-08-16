@@ -16,13 +16,17 @@ from ucca import diffutil, ioutil, textutil, layer0, layer1
 from ucca.evaluation import LABELED, UNLABELED, EVAL_TYPES, evaluate as evaluate_ucca
 from ucca.normalization import normalize
 
-from tupa.__version__ import GIT_VERSION
-from tupa.config import Config, Iterations
-from tupa.model import Model, NODE_LABEL_KEY, ClassifierProperty
-from tupa.oracle import Oracle
-from tupa.states.state import State
-from tupa.traceutil import set_traceback_listener
-
+#from tupa.__version__ import GIT_VERSION
+#from tupa.config import Config, Iterations
+#from tupa.model import Model, NODE_LABEL_KEY, ClassifierProperty
+#from tupa.oracle import Oracle
+#from tupa.states.state import State
+#from tupa.traceutil import set_traceback_listener
+from config import Config, Iterations
+from model import Model, NODE_LABEL_KEY, ClassifierProperty
+from oracle import Oracle
+from states.state import State
+from traceutil import set_traceback_listener
 
 class ParserException(Exception):
     pass
@@ -702,7 +706,7 @@ def main_generator():
 
 
 def main():
-    print("TUPA version " + GIT_VERSION)
+    #print("TUPA version " + GIT_VERSION)
     set_traceback_listener()
     list(main_generator())
 

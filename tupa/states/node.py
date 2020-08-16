@@ -5,7 +5,8 @@ from semstr.util.amr import LABEL_ATTRIB, UNKNOWN_LABEL, LABEL_SEPARATOR
 from ucca import core, layer0
 from ucca.layer1 import EdgeTags
 
-from ..config import Config
+#from ..config import Config
+from config import Config
 
 
 class Node:

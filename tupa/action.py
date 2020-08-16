@@ -1,6 +1,7 @@
-from .config import Config, COMPOUND
-from .labels import Labels
-
+#from .config import Config, COMPOUND
+#from .labels import Labels
+from config import Config, COMPOUND
+from labels import Labels
 
 class Action(dict):
     type_to_id = {}

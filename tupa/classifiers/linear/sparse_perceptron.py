@@ -4,8 +4,10 @@ from itertools import repeat
 
 import numpy as np
 
-from tupa.model_util import KeyBasedDefaultDict, save_dict, load_dict
-from ..classifier import Classifier
+#from tupa.model_util import KeyBasedDefaultDict, save_dict, load_dict
+#from ..classifier import Classifier
+from model_util import KeyBasedDefaultDict, save_dict, load_dict
+from classifiers.classifier import Classifier
 
 
 class FeatureWeights:

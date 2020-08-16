@@ -13,7 +13,9 @@ from glob import glob
 from operator import itemgetter
 from tqdm import tqdm
 
-from .labels import Labels
+#from .labels import Labels
+from labels import Labels
+
 
 MISSING_VALUE = -1
 UNKNOWN_VALUE = 0

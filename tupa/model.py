@@ -4,12 +4,16 @@ from enum import Enum
 from ucca import textutil
 from ucca.layer0 import Terminal
 
-from .action import Actions
-from .classifiers.classifier import Classifier
-from .config import Config, SEPARATOR, SPARSE, MLP, BIRNN, HIGHWAY_RNN, HIERARCHICAL_RNN, NOOP
-from .features.feature_params import FeatureParameters
-from .model_util import UnknownDict, AutoIncrementDict, remove_backup, save_json, load_json
-
+#from .action import Actions
+#from .classifiers.classifier import Classifier
+#from .config import Config, SEPARATOR, SPARSE, MLP, BIRNN, HIGHWAY_RNN, HIERARCHICAL_RNN, NOOP, RANDOM_FOREST
+#from .features.feature_params import FeatureParameters
+#from .model_util import UnknownDict, AutoIncrementDict, remove_backup, save_json, load_json
+from action import Actions
+from classifiers.classifier import Classifier
+from config import Config, SEPARATOR, SPARSE, MLP, BIRNN, HIGHWAY_RNN, HIERARCHICAL_RNN, NOOP, RANDOM_FOREST
+from features.feature_params import FeatureParameters
+from model_util import UnknownDict, AutoIncrementDict, remove_backup, save_json, load_json
 
 class ParameterDefinition:
     def __init__(self, args, name, attr_to_arg, attr_to_val=None):
@@ -81,6 +85,7 @@ class ClassifierProperty(Enum):
 
 
 CLASSIFIER_PROPERTIES = {
+    RANDOM_FOREST: (),
     SPARSE: (ClassifierProperty.update_only_on_error,),
     MLP: (ClassifierProperty.trainable_after_saving,),
     BIRNN: (ClassifierProperty.trainable_after_saving, ClassifierProperty.require_init_features),
@@ -153,10 +158,19 @@ class Model:
         if self.classifier:  # Already initialized
             pass
         elif self.config.args.classifier == SPARSE:
-            from .features.sparse_features import SparseFeatureExtractor
-            from .classifiers.linear.sparse_perceptron import SparsePerceptron
+            #from .features.sparse_features import SparseFeatureExtractor
+            #from .classifiers.linear.sparse_perceptron import SparsePerceptron
+            from features.sparse_features import SparseFeatureExtractor
+            from classifiers.linear.sparse_perceptron import SparsePerceptron
             self.feature_extractor = SparseFeatureExtractor(omit_features=self.config.args.omit_features)
             self.classifier = SparsePerceptron(self.config, labels)
+        elif self.config.args.classifier == RANDOM_FOREST:
+            #from .features.sparse_features import SparseFeatureExtractor
+            #from .classifiers.linear.sparse_perceptron import SparsePerceptron
+            from features.sparse_features import SparseFeatureExtractor
+            from classifiers.linear.random_forest import RandomForest
+            self.feature_extractor = SparseFeatureExtractor(omit_features=self.config.args.omit_features)
+            self.classifier = RandomForest(self.config, labels)
         elif self.config.args.classifier == NOOP:
             from .features.empty_features import EmptyFeatureExtractor
             from .classifiers.noop import NoOp

@@ -3,10 +3,12 @@ from collections import OrderedDict
 import numpy as np
 from ucca.textutil import get_word_vectors
 
-from ..config import Config
-from ..labels import Labels
-from ..model_util import DropoutDict
-
+#from ..config import Config
+#from ..labels import Labels
+#from ..model_util import DropoutDict
+from config import Config
+from labels import Labels
+from model_util import DropoutDict
 
 class FeatureParameters(Labels):
     def __init__(self, suffix, dim, size, dropout=0, updated=True, num=1, init=None, data=None, indexed=False,

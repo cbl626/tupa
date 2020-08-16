@@ -1,9 +1,12 @@
 from semstr.util.amr import LABEL_ATTRIB, LABEL_SEPARATOR
 from ucca import layer1
 
-from .action import Actions
-from .config import Config, COMPOUND
-from .states.state import InvalidActionError
+#from .action import Actions
+#from .config import Config, COMPOUND
+#from .states.state import InvalidActionError
+from action import Actions
+from config import Config, COMPOUND
+from states.state import InvalidActionError
 
 # Constants for readability, used by Oracle.action
 RIGHT = PARENT = NODE = 0
