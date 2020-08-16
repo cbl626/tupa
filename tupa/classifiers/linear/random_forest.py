@@ -31,14 +31,12 @@ def decompress_pickle(file):
 # Carries out one-hot encoding of the dataset and saves the result in a coordinate matrix.
 def build_dataset(list_of_vectors, feature_vector):
     idx_list = []
-    total_idx = 0
 
     for vector in list_of_vectors:
         unique_vals = set(vector)
         new_row = [val in unique_vals for val in feature_vector]
         new_idx = np.where(new_row)[0]
         idx_list.append(new_idx)
-        total_idx += new_idx.size
 
     all_rows = []
     all_cols = []
